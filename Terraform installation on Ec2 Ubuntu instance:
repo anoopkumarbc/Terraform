@@ -1,0 +1,42 @@
+
+   
+ # Terraform installation on ec2 Ubuntu instance:
+ 
+Step 1. Install unzip:
+sudo apt-get install unzip
+
+Step 2. Download the latest version of Terraform:
+wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip
+
+Step 3. Extract the file archive:
+unzip terraform_0.11.8_linux_amd64.zip
+
+Step 4. Move the executables to /usr/local/bin/
+sudo mv terraform /usr/local/bin/
+
+Step 5. Check the version installed:
+terraform --version
+
+Step 6. Create EC2 IAM user
+
+Step 7. Terraform and provision AWS
+
+cd
+mkdir terraform
+cd terraform/
+vi aws.tf
+provider "aws" {
+  region     = "us-west-2"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
+}
+
+resource "aws_instance" "example" {
+ami = "ami-83a713e0"
+instance_type = "t2.micro"
+tags {
+Name = "your-instance"
+}
+}
+
+terraform plan
